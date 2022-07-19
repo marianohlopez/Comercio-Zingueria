@@ -19,7 +19,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light barraNavegacion">
             <div class="container">
-                <a class="navbar-brand" href="../index.html"><img class="logo" src="../img/logo.png" alt="Logo de empresa"></a>
+                <a class="navbar-brand" href="../index.html"><img class="logo" src="../img/logo.png"
+                        alt="Logo de empresa"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,47 +33,27 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="./productos.html">Productos</a>
                         </li>
+                        <li class="nav-item ">
+                            <button class="nav-link text-body " id="open" href="#">Carrito<span id="contador-carrito">0</span> </a>
+                        </li>
                     </ul>
+                    <input id="busqueda" type="text">
                 </div>
             </div>
         </nav>
     </header>
     <main>
-        <div id="galeria">
-            <figure class="fotoGaleria foto1">
-                <img class="galeriaImagen" src="../img/1.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto2">
-                <img class="galeriaImagen" src="../img/2.jpg" alt="">                
-            </figure>
-            <figure class="fotoGaleria foto3">
-                <img class="galeriaImagen" src="../img/3.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto4">
-                <img class="galeriaImagen" src="../img/4.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto5">
-                <img class="galeriaImagen" src="../img/5.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto6">
-                <img class="galeriaImagen" src="../img/6.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto7">
-                <img class="galeriaImagen" src="../img/7.jpg" alt="">
-            </figure>
-            <figure class="fotoGaleria foto8">
-                <img class="galeriaImagen" src="../img/8.jpg" alt="">
-            </figure>
-        </div>
-        <div class="centerCarro">
-            <ul id="estiloCarrito">
-                <h2 id="tituloCarrito"></h2>
-                <ul id="mensajeCarrito"></ul>
-                <h4 id="precioTotal"></h4>
-            </ul>
-        </div>
-        
+        <div id="productoContenedor">
+            <div class="modal-container" id="modal_container">
+                <div class="modal-carrito">
+                    <h3>Carrito</h3>
+                    <button id="cerrar">Cerrar</button>
+                    <div id="carrito-contenedor"></div>
+                    <div id="sumaTotal"></div>
+                </div>
+            </div>
 
+        </div>
     </main>
     <div class="container footer">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -87,19 +68,22 @@
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                 <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
                             <use xlink:href="#twitter" /></svg></a></li>
-                <li class="ms-3"><a class="text-muted" href="" target="_blank"><img class="redes" src="../img/instagram.svg"
-                            alt="instagram"></a></li>
-                <li class="ms-3"><a class="text-muted" href="" target="_blank"><img class="redes" src="../img/facebook.svg"
-                            alt="facebook"></a></li>
+                <li class="ms-3"><a class="text-muted" href="" target="_blank"><img class="redes"
+                            src="../img/instagram.svg" alt="instagram"></a></li>
+                <li class="ms-3"><a class="text-muted" href="" target="_blank"><img class="redes"
+                            src="../img/facebook.svg" alt="facebook"></a></li>
             </ul>
         </footer>
     </div>
-    <!-- JAVASCRIPT -->
-    <script src="../js/productos.js"></script>
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    <!-- JAVASCRIPT -->
+    <script src="../js/productos.js" type="module"></script>
+    <script src="../js/app.js" type="module"></script>
+    <script src="../js/carritoindex.js" type="module"></script>
+    <script src="../js/modal.js" type="module"></script>
 </body>
 
 </html>
