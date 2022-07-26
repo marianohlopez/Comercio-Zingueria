@@ -2,12 +2,28 @@ import { productos } from "./productos.js";
 
 const carritoDeCompras = []
 
+const carritoStorage = () => {
+    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
+ }
+
+const sumaTotal = (producto) => {
+    let total = (producto.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);
+    
+    let precioTotal = document.getElementById("sumaTotal");
+         
+    precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>`
+}
+
 const hacerCarrito = () =>{
 
+    let validarCarrito = JSON.parse(localStorage.getItem("carrito"));
     const contenedorCarrito = document.getElementById("carrito-contenedor");
-    let div = document.createElement("div");
 
-    for(const item of carritoDeCompras){
+    contenedorCarrito.innerHTML = ``;
+
+    for(const item of validarCarrito){
+
+        let div = document.createElement("div");
 
         div.classList.add ("productoEnCarrito");
 
@@ -18,28 +34,27 @@ const hacerCarrito = () =>{
                         <button id="eliminar${item.id}" class="boton-eliminar">Eliminar</button>
                         `
         contenedorCarrito.appendChild(div);
+
         //SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
-    
-        let total = carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio, 0);
-    
-        let precioTotal = document.getElementById("sumaTotal");
-             
-        precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>`
+        sumaTotal(validarCarrito);
     }
 } 
 
 export const carritoIndex = (productoId)=>{
     let producto = productos.find(producto => producto.id === productoId);
-    if((productoId.stock <= 0) || (producto != undefined && producto.cantidad >= productoId.cantidad)){
-        alert(`Por el momento no tenemos stock de ${productoId.nombre}, vuelva más tarde`);
-    }else if(carritoDeCompras.some((element) => element.id === productoId)){
+    if(carritoDeCompras.some((element) => element.id === productoId)){
         carritoDeCompras.find(item => item.id === productoId).cantidad++;
+        carritoStorage();
+        hacerCarrito();
+        
     }else{
         carritoDeCompras.push(producto);
         carritoDeCompras.find(item => item.id === productoId).cantidad++;
+        carritoStorage();
         hacerCarrito();
     }
 }
+hacerCarrito();
 
 
 
@@ -52,47 +67,3 @@ export const carritoIndex = (productoId)=>{
 
 
 
-
-
-
-
-
-
-
-    
-/*             export const carritoIndex = (productoId) =>{
-                const contenedorCarrito = document.getElementById("carrito-contenedor")
-                let producto = productos.find( producto => producto.id == productoId)
-                const renderProductoCarrito = ()=>{
-                    
-                    carritoDeCompras.push(producto)
-            
-                    
-            
-                    let div = document.createElement('div')
-                    div.classList.add('productoEnCarrito')
-                    div.innerHTML = `<p>${producto.nombre}</p>
-                                    <p>Precio: ${producto.precio}</p> 
-                                    <p id="cantidad${producto.id}">Cantidad: ${producto.cantidad}</p>
-                                    <button id="eliminar${producto.id}" class="boton-eliminar" ><i class="fa-solid fa-trash-can"></i></button>
-                        `
-                    contenedorCarrito.appendChild(div)
-                                //SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
-                
-                                let total = carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio, 0);
-                
-                                let precioTotal = document.getElementById("sumaTotal");
-                        
-                                precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>`
-                }
-                if(carritoDeCompras.some((element) => element.id === productoId)){
-                    carritoDeCompras.find(item => item.id === productoId).cantidad++;
-                }else{
-                    carritoDeCompras.push(producto);
-                    carritoDeCompras.find(item => item.id === productoId).cantidad++;
-                    renderProductoCarrito()
-                   
-                }
-                
-                
-            } */

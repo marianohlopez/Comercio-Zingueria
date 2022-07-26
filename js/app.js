@@ -28,7 +28,7 @@ const mostrarProductos = (productosRender) =>{
 
 mostrarProductos(productos);
 
-/* let usuario;
+let usuario;
 let usuarioStorage = sessionStorage.getItem("usuario");
 
 if(usuarioStorage){
@@ -46,4 +46,4 @@ const cerrarSesion = document.getElementById("cerrarSesion");
 cerrarSesion.addEventListener("click", () => {sessionStorage.clear()} )
 
 
- */
+
