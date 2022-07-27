@@ -1,27 +1,29 @@
 import { productos } from "./productos.js";
 
-const carritoDeCompras = []
+let carritoDeCompras
+
+let validarCarrito = localStorage.getItem("carrito");
 
 const carritoStorage = () => {
     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
  }
 
-const sumaTotal = (producto) => {
-    let total = (producto.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);
+const sumaTotal = () => {
+    let total = (carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);
     
     let precioTotal = document.getElementById("sumaTotal");
          
     precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>`
 }
 
+
 const hacerCarrito = () =>{
 
-    let validarCarrito = JSON.parse(localStorage.getItem("carrito"));
     const contenedorCarrito = document.getElementById("carrito-contenedor");
 
     contenedorCarrito.innerHTML = ``;
 
-    for(const item of validarCarrito){
+    for(const item of carritoDeCompras){
 
         let div = document.createElement("div");
 
@@ -36,7 +38,7 @@ const hacerCarrito = () =>{
         contenedorCarrito.appendChild(div);
 
         //SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
-        sumaTotal(validarCarrito);
+        sumaTotal(carritoDeCompras);
     }
 } 
 
@@ -54,7 +56,18 @@ export const carritoIndex = (productoId)=>{
         hacerCarrito();
     }
 }
-hacerCarrito();
+
+if (validarCarrito == null){
+    carritoDeCompras = [];
+ }else{
+   carritoDeCompras = JSON.parse(validarCarrito)
+   hacerCarrito();
+}
+
+
+
+
+
 
 
 
