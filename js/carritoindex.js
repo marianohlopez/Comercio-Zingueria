@@ -1,24 +1,12 @@
 import { productos } from "./productos.js";
+import { eliminarProductos, contador, sumaTotal, carritoStorage } from "./extras.js";
+export {carritoDeCompras, carritoIndex, hacerCarrito};
 
 let carritoDeCompras
-
 let validarCarrito = localStorage.getItem("carrito");
 
-const carritoStorage = () => {
-    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
- }
-
-const sumaTotal = () => {
-    let total = (carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);
-    
-    let precioTotal = document.getElementById("sumaTotal");
-         
-    precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>`
-}
-
-
+//Renderizar los productos seleccionados en el carrito
 const hacerCarrito = () =>{
-
     const contenedorCarrito = document.getElementById("carrito-contenedor");
 
     contenedorCarrito.innerHTML = ``;
@@ -37,33 +25,36 @@ const hacerCarrito = () =>{
                         `
         contenedorCarrito.appendChild(div);
 
-        //SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
-        sumaTotal(carritoDeCompras);
+        const botonEliminar = document.getElementById(`eliminar${item.id}`)
+        botonEliminar.addEventListener("click", () => {eliminarProductos(item.id)})
     }
+    sumaTotal();
+    contador();
+
 } 
 
-export const carritoIndex = (productoId)=>{
-    let producto = productos.find(producto => producto.id === productoId);
-    if(carritoDeCompras.some((element) => element.id === productoId)){
-        carritoDeCompras.find(item => item.id === productoId).cantidad++;
+//Ingresar productos en el carrito o aumentar cantidad
+const carritoIndex = (productoCarrito)=>{
+    let producto = productos.find(item => item.id === productoCarrito.id);
+    if((productoCarrito.stock <= 0) || (productoCarrito != undefined && producto.cantidad >= productoCarrito.stock)){
+        alert(`Lo sentimos, por el momento no tenemos stock de ${productoCarrito.nombre}, intente más tarde`);
+    }
+    else if(carritoDeCompras.some((element) => element.id === productoCarrito.id)){
+        carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
         carritoStorage();
-        hacerCarrito();
-        
+        hacerCarrito();   
+        alert(`Se agrego ${productoCarrito.nombre}`);
     }else{
         carritoDeCompras.push(producto);
-        carritoDeCompras.find(item => item.id === productoId).cantidad++;
+        carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
         carritoStorage();
         hacerCarrito();
+        alert(`Se agrego ${productoCarrito.nombre}`);
     }
 }
 
-if (validarCarrito == null){
-    carritoDeCompras = [];
- }else{
-   carritoDeCompras = JSON.parse(validarCarrito)
-   hacerCarrito();
-}
-
+//Siguen renderizandose los productos del carrito luego de actualizar o reiniciar
+validarCarrito ? (carritoDeCompras = JSON.parse(validarCarrito), hacerCarrito()) : carritoDeCompras = [];
 
 
 

@@ -20,30 +20,13 @@ const mostrarProductos = (productosRender) =>{
         const boton = document.getElementById(`${producto.id}`)
 
         boton.addEventListener("click", ()=> {
-            carritoIndex(producto.id);
-            alert(`Se agrego ${producto.nombre}`);
-    })
+            carritoIndex(producto);
+        })
     })
 }
 
-mostrarProductos(productos);
+mostrarProductos();
 
-let usuario;
-let usuarioStorage = sessionStorage.getItem("usuario");
-
-if(usuarioStorage){
-  let usuario = usuarioStorage;
-  let mensaje = `Bienvenid@ ${usuario}`;
-  alert(mensaje);
-}else{
-  usuario = prompt("Ingrese su nombre");
-  sessionStorage.setItem("usuario", usuario);
-}
-
-
-const cerrarSesion = document.getElementById("cerrarSesion");
-
-cerrarSesion.addEventListener("click", () => {sessionStorage.clear()} )
 
 
 
