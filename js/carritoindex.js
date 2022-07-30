@@ -21,12 +21,12 @@ const hacerCarrito = () =>{
                         <p>${item.nombre}</p>
                         <p>Precio: ${item.precio}</p> 
                         <p id="cantidad${item.id}">Cantidad: ${item.cantidad}</p>
-                        <button id="eliminar${item.id}" class="boton-eliminar">Eliminar</button>
+                        <button id="eliminar${item.id}" class="boton-eliminar"><img src="../img/trash.svg" alt="botonEliminar"></button>
                         `
         contenedorCarrito.appendChild(div);
 
         const botonEliminar = document.getElementById(`eliminar${item.id}`)
-        botonEliminar.addEventListener("click", () => {eliminarProductos(item.id)})
+        botonEliminar.addEventListener("click", () => {eliminarProductos(item)})
     }
     sumaTotal();
     contador();
@@ -43,13 +43,42 @@ const carritoIndex = (productoCarrito)=>{
         carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
         carritoStorage();
         hacerCarrito();   
-        alert(`Se agrego ${productoCarrito.nombre}`);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            width: 200,
+            title: `Se agregó ${productoCarrito.nombre} al carrito`,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            className: "letraSweet",
+            showConfirmButton: false,
+            timer: 1500
+        })
     }else{
         carritoDeCompras.push(producto);
         carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
         carritoStorage();
         hacerCarrito();
-        alert(`Se agrego ${productoCarrito.nombre}`);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            width: 200,
+            title: `Se agregó ${productoCarrito.nombre} al carrito`,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            className: "letraSweet",
+            showConfirmButton: false,
+            timer: 1500
+        })
+
     }
 }
 

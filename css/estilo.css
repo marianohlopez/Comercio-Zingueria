@@ -10,8 +10,22 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-   /*  background-image: linear-gradient(to bottom right, #d9d9d9, #f6a700 ); */
-   background-color: #f6a700 ;
+    background-color: #f6a700 ;
+}
+
+#cerrarSesion {
+    border: none; 
+}
+
+#cerrarSesion img{
+    width: 25px;
+    background-color: #d9d9d9;
+    padding: 0px 0px 5px 5px;
+}
+
+.swal2-popup {
+    font-size: 10px !important;
+    letter-spacing: 1px !important; 
 }
 
 /* FOOTER */
@@ -45,7 +59,16 @@ body {
 .botonesNavegador {
     width: 200px;
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+}
+
+.carrito {
+    border: none;
+    background-color: #d9d9d9;
+}
+
+.carrito img{
+    width: 50px;
 }
 
 /* INDEX */
@@ -63,6 +86,20 @@ body {
     text-align: center;
 }
 
+#nombreUsuario h5 {
+    animation-name: titulo;
+    animation-duration: 3s;
+    animation-iteration-count: infinite; 
+}
+@keyframes titulo {
+    0% {
+      opacity: 0; }
+    50% {
+      opacity: 100%; }
+    100% {
+      opacity: 0;  
+    } }
+    
 .botonProductos {
     text-decoration: none;
     font-size: 18px;
@@ -112,7 +149,6 @@ body {
 .card{
     margin: 20px;
     box-shadow: black 0px 5px 25px 0px;
-    /* width: 300px; */
 }
 
 .botonCompra {
@@ -124,6 +160,7 @@ body {
     padding: 3px 15px;
     font-weight: bold;
     border-radius: 10px;
+    border: 1px black solid;
 }
 
 /* Modal */
@@ -141,7 +178,7 @@ body {
     z-index: 100;
   } 
   
-  /* hacer visible el modal  */
+/* hacer visible el modal  */
 .modal-active {
     opacity: 1;
     visibility: visible;
@@ -166,11 +203,13 @@ body {
     justify-content: space-between;
   }
 
-/* .boton-eliminar {
-    color: black;
+.boton-eliminar {
+    background-color: #d9d9d9;
     border: none;
     font-size: 20px;
-} */
+    position: relative;
+    bottom: 9px;
+}
   
 
 /* MEDIA QUERIES */

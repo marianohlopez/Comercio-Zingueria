@@ -11,6 +11,8 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/estilo.css">
+    <!-- ANIMATION -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- FAVICON -->
     <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
 </head>
@@ -34,12 +36,12 @@
                             <a class="nav-link active" href="./productos.html">Productos</a>
                         </li>
                         <li class="nav-item ">
-                            <button class="nav-link text-body " id="open" href="#">Carrito <span id="contador-carrito">0</span> </a>
+                            <button class="nav-link text-body carrito" id="open" href="#"><img src="../img/carrito.png" alt="botonCarrito"> <span id="contador-carrito">0</span> </a>
                         </li>
                     </ul>
-                    <input id="busqueda" type="text">
-                    <button id="cerrarSesion">cerrar sesion</button>
                 </div>
+                <div id="nombreUsuario"></div>
+                <button id="cerrarSesion" title="Cerrar sesión"><img src="../img/logout.svg" alt="logout"></button>
             </div>
         </nav>
     </header>
@@ -81,6 +83,8 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/productos.js" type="module"></script>
     <script src="../js/app.js" type="module"></script>
     <script src="../js/carritoindex.js" type="module"></script>

@@ -7,11 +7,26 @@ const carritoStorage = () => {
 }
 
 //Función del boton eliminar del carrito
-const eliminarProductos = (productoid) => {
-  let index = carritoDeCompras.findIndex(item => item.id === productoid);
+const eliminarProductos = (producto) => {
+  let index = carritoDeCompras.findIndex(item => item.id === producto.id);
   carritoDeCompras.splice(index, 1);
   carritoStorage();
   hacerCarrito();
+  Swal.fire({
+    position: 'top-start',
+    icon: 'warning',
+    width: 200,
+    title: `Se eliminó ${producto.nombre} del carrito`,
+    showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+    },
+    className: "letraSweet",
+    showConfirmButton: false,
+    timer: 1000
+})
 }
 
 //SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
@@ -28,10 +43,44 @@ const contador = () => {
 }
 
 //Loguear al usuario
-let usuario;
-let usuarioStorage = sessionStorage.getItem("usuario");
 
-if(usuarioStorage){
+let div = document.getElementById("nombreUsuario")
+let usuarioStorage = sessionStorage.getItem("usuario");
+if(usuarioStorage == undefined){
+  Swal.fire({
+    title: "Ingrese su nombre",
+    input: "text",
+    inputAttributes: {
+      autocapitalize: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Aceptar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      sessionStorage.setItem("usuario", result.value);
+      usuarioStorage = sessionStorage.getItem("usuario").toUpperCase();
+      div.innerHTML = `<h5>BIENVENID@ ${usuarioStorage}</h5>`;
+    }
+  });
+}div.innerHTML = `<h5>BIENVENID@ ${usuarioStorage}</h5>`;
+
+const cerrarSesion = document.getElementById("cerrarSesion");
+cerrarSesion.addEventListener("click", () => {
+  Swal.fire({
+  title: '¿Desea cerrar sesión?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'OK'
+}).then((result) => {
+  if (result.isConfirmed) {
+    sessionStorage.clear()
+  }
+})
+} )
+
+/* if(usuarioStorage){
   let usuario = usuarioStorage;
   let mensaje = `Bienvenid@ ${usuario}`;
   alert(mensaje);
@@ -39,9 +88,9 @@ if(usuarioStorage){
   usuario = prompt("Ingrese su nombre");
   sessionStorage.setItem("usuario", usuario);
 }
+ */
 
-const cerrarSesion = document.getElementById("cerrarSesion");
-cerrarSesion.addEventListener("click", () => {sessionStorage.clear()} )
+
 
 
 
