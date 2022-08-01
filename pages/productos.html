@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -40,22 +40,39 @@
                         </li>
                     </ul>
                 </div>
-                <div id="nombreUsuario"></div>
-                <button id="cerrarSesion" title="Cerrar sesión"><img src="../img/logout.svg" alt="logout"></button>
+                <div>
+                    <div class="usuario">
+                        <div id="nombreUsuario"></div>
+                        <button id="cerrarSesion" title="Cerrar sesión"><img src="../img/logout.svg" alt="logout"></button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Filtrar por :
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li id="caños"><a class="dropdown-item" href="#">Caños</a></li>
+                            <li id="curvas"><a class="dropdown-item curvas" href="#">Curvas </a></li>
+                            <li id="sombreros"><a class="dropdown-item sombreros" href="#">Sombreros</a></li>
+                            <li id="eolicos"><a class="dropdown-item eolicos" href="#">Eolicos</a></li>
+                            <li id="todos"><a class="dropdown-item todos" href="#">Mostrar todos</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
     <main>
         <div id="productoContenedor">
-            <div class="modal-container" id="modal_container">
-                <div class="modal-carrito">
-                    <h3>Carrito</h3>
-                    <button id="cerrar">Cerrar</button>
-                    <div id="carrito-contenedor"></div>
-                    <div id="sumaTotal"></div>
-                </div>
-            </div>
 
+
+        </div>
+        <div class="modal-container" id="modal_container">
+            <div class="modal-carrito">
+                <h3>Carrito</h3>
+                <button id="cerrar">Cerrar</button>
+                <div id="carrito-contenedor"></div>
+                <div id="sumaTotal"></div>
+            </div>
         </div>
     </main>
     <div class="container footer">
@@ -83,7 +100,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <!-- JAVASCRIPT -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/productos.js" type="module"></script>
     <script src="../js/app.js" type="module"></script>

@@ -30,7 +30,6 @@ const hacerCarrito = () =>{
     }
     sumaTotal();
     contador();
-
 } 
 
 //Ingresar productos en el carrito o aumentar cantidad
