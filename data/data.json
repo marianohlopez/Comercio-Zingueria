@@ -1,0 +1,10 @@
+[
+    { "id": 1, "nombre": "CAÑO REDONDO", "precio": 569.86, "img": "../img/caño-redondo.jpg", "stock": 5, "categoria": "CAÑOS"},
+    { "id": 2, "nombre": "CAÑO RECTANGULAR", "precio": 650.33, "img": "../img/caño-rectangular.jpg", "stock": 10, "categoria": "CAÑOS"},
+    { "id": 3, "nombre": "CURVA ARTICULADA", "precio": 500.25, "img": "../img/curva-articulada.jpg", "stock": 10, "categoria": "CURVAS"},
+    { "id": 4, "nombre": "CURVA CORRUGADA", "precio": 368.78, "img": "../img/curva-corrugada.jpg", "stock": 3, "categoria": "CURVAS"},
+    { "id": 5, "nombre": "SOMBRERO DOBLE ARO", "precio": 597, "img": "../img/sombrero-doblearo.jpg", "stock": 10, "categoria": "SOMBREROS"},
+    { "id": 6, "nombre": "SOMBRERO VENTURI", "precio": 1625.83, "img": "../img/sombrero-venturi.jpg", "stock": 2, "categoria": "SOMBREROS"},
+    { "id": 7, "nombre": "SOMBRERO TIPO H", "precio": 1102.33, "img": "../img/sombrero-h.jpg", "stock": 8, "categoria": "SOMBREROS"},
+    { "id": 8, "nombre": "EOLICO DE ALUMINIO", "precio": 2405, "img": "../img/eolico.jpg", "stock": 1, "categoria": "EOLICOS"}
+]

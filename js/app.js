@@ -28,8 +28,6 @@ const mostrarProductos = (renderProductos) =>{
     })
 }
 
-mostrarProductos(productos);
-
 /* FILTRAR PRODUCTOS EN EL LAYOUT */
 
 const filtrar = (catg) => {
@@ -52,4 +50,4 @@ filtroEolicos.addEventListener("click", ()=> {filtrar("EOLICOS");})
 let filtroTodos = document.getElementById("todos")
 filtroTodos.addEventListener("click", ()=> {mostrarProductos(productos);})
 
-
+export {mostrarProductos}

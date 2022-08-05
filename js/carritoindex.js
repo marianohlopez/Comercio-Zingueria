@@ -1,6 +1,5 @@
 import { productos } from "./productos.js";
-import { eliminarProductos, contador, sumaTotal, carritoStorage } from "./extras.js";
-export {carritoDeCompras, carritoIndex, hacerCarrito};
+import { carritoStorage, eliminarProductos, contador, sumaTotal, vaciarCarrito, sumar, resta} from "./extras.js";
 
 let carritoDeCompras
 let validarCarrito = localStorage.getItem("carrito");
@@ -12,18 +11,28 @@ const hacerCarrito = () =>{
     contenedorCarrito.innerHTML = ``;
 
     for(const item of carritoDeCompras){
-
+        
         let div = document.createElement("div");
 
         div.classList.add ("productoEnCarrito");
 
         div.innerHTML = `
-                        <p>${item.nombre}</p>
-                        <p>Precio: ${item.precio}</p> 
+                        <p class= "nombreProdCarrito">${item.nombre}</p>
+                        <p class: "precioProdCarrito">Precio: ${item.precio}</p> 
+                        <div class= "sumarRestarCarrito">
+                        <button id="restar${item.id}" class= "restaBoton">-</button>
                         <p id="cantidad${item.id}">Cantidad: ${item.cantidad}</p>
-                        <button id="eliminar${item.id}" class="boton-eliminar"><img src="../img/trash.svg" alt="botonEliminar"></button>
+                        <button id="sumar${item.id}" class= "sumarBoton">+</button>
+                        </div>
+                        <button id="eliminar${item.id}" class="boton-eliminar" title="Eliminar producto"><img src="../img/trash.svg" alt="botonEliminar"></button>
                         `
         contenedorCarrito.appendChild(div);
+
+        const botonResta = document.getElementById(`restar${item.id}`);
+        botonResta.addEventListener("click", () => {resta(item)})
+
+        const botonSuma = document.getElementById(`sumar${item.id}`);
+        botonSuma.addEventListener("click", () => {sumar(item)})
 
         const botonEliminar = document.getElementById(`eliminar${item.id}`)
         botonEliminar.addEventListener("click", () => {eliminarProductos(item)})
@@ -32,11 +41,28 @@ const hacerCarrito = () =>{
     contador();
 } 
 
+// Botón para vaciar el carrito 
+const botonVaciarCarrito = document.getElementById("vaciarCarrito").addEventListener("click", () =>{vaciarCarrito();})
+
 //Ingresar productos en el carrito o aumentar cantidad
 const carritoIndex = (productoCarrito)=>{
     let producto = productos.find(item => item.id === productoCarrito.id);
     if((productoCarrito.stock <= 0) || (productoCarrito != undefined && producto.cantidad >= productoCarrito.stock)){
-        alert(`Lo sentimos, por el momento no tenemos stock de ${productoCarrito.nombre}, intente más tarde`);
+        Swal.fire({
+            position: 'center',
+            icon: 'info',
+            width: 200,
+            title: `Lo sentimos, por el momento no tenemos stock de ${productoCarrito.nombre}, intente más tarde`,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            className: "letraSweet",
+            showConfirmButton: false,
+            timer: 3500
+        })
     }
     else if(carritoDeCompras.some((element) => element.id === productoCarrito.id)){
         carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
@@ -57,7 +83,9 @@ const carritoIndex = (productoCarrito)=>{
             showConfirmButton: false,
             timer: 1500
         })
+
     }else{
+        producto.cantidad = 0
         carritoDeCompras.push(producto);
         carritoDeCompras.find(item => item.id === productoCarrito.id).cantidad++;
         carritoStorage();
@@ -76,18 +104,31 @@ const carritoIndex = (productoCarrito)=>{
             className: "letraSweet",
             showConfirmButton: false,
             timer: 1500
-        })
-
+        }) 
     }
+}
+
+/* MODAL FORMULARIO */
+
+const formProductos = () => {
+    let formProductos = document.getElementById("compraProductos");
+    formProductos.innerHTML = ``;
+    carritoDeCompras.forEach(element => {
+        let div = document.createElement("div");
+        div.classList.add ("productoEnForm");
+        div.innerHTML = `
+                        <p>${element.nombre}</p>
+                        <p> $${element.precio}</p> 
+                        <p>Cantidad: ${element.cantidad}</p>
+                        `
+        formProductos.appendChild(div);
+    });
 }
 
 //Siguen renderizandose los productos del carrito luego de actualizar o reiniciar
 validarCarrito ? (carritoDeCompras = JSON.parse(validarCarrito), hacerCarrito()) : carritoDeCompras = [];
 
-
-
-
-
+export {carritoDeCompras, carritoIndex, hacerCarrito, formProductos};
 
 
 

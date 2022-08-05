@@ -68,7 +68,49 @@
                 <h3>Carrito</h3>
                 <button id="cerrar">Cerrar</button>
                 <div id="carrito-contenedor"></div>
-                <div id="sumaTotal"></div>
+                <div id="vaciarCarrito"><button>Vaciar carrito</button></div> 
+                <div>
+                    <div id="sumaTotal"></div>
+                    <button id="btnFinalizarCompra">Comprar</button>
+                </div>
+            </div>
+        </div>
+        <div class="containerForm container-fluid">
+            <div class="containerFormDiv">
+                <button id="btnCerrarForm">X</button>
+                <h2>FINALIZÁ TU COMPRA</h2>
+                <div class="containerFormCompra">
+                    <form class="datosPersonales">
+                        <h3>Datos personales</h3>
+                        <fieldset class="container-fluid datos">
+                            <div class="column">
+                                <div class="mb-3 col-lg-3 col-md-6 labelForm">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Ingrese su nombre"
+                                        aria-label="First name">
+                                </div>
+                                <div class="mb-3 col-lg-3 col-md-6 labelForm">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Ingrese su apellido"
+                                        aria-label="Last name">
+                                </div>
+                            </div>
+                            <div class="mb-3 col-lg-3 col-md-6 labelForm">
+                                <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="aaa@gmail.com">
+                            </div>
+                            <div class="mb-3 col-lg-3 col-md-6 labelForm">
+                                <label for="inputAddress" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Av. Siempreviva 742">
+                            </div>
+                            <button type="button" class="btn btn-light">Finalizar compra</button>
+                            <!-- <input class="m-2 p-1 botonForm" type="submit"> -->
+                            <input class="m-2 p-1 botonForm" type="reset">
+                        </fieldset>
+                    </form>
+                    <div id="compraProductos"></div>
+                </div>
             </div>
         </div>
     </main>
@@ -102,6 +144,7 @@
     <script src="../js/app.js" type="module"></script>
     <script src="../js/carritoindex.js" type="module"></script>
     <script src="../js/modal.js" type="module"></script>
+    <script src="../js/extras.js" type="module"></script>
 </body>
 
 </html>
