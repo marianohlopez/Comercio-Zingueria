@@ -6,5 +6,19 @@
     { "id": 5, "nombre": "SOMBRERO DOBLE ARO", "precio": 597, "img": "../img/sombrero-doblearo.jpg", "stock": 10, "categoria": "SOMBREROS"},
     { "id": 6, "nombre": "SOMBRERO VENTURI", "precio": 1625.83, "img": "../img/sombrero-venturi.jpg", "stock": 2, "categoria": "SOMBREROS"},
     { "id": 7, "nombre": "SOMBRERO TIPO H", "precio": 1102.33, "img": "../img/sombrero-h.jpg", "stock": 8, "categoria": "SOMBREROS"},
-    { "id": 8, "nombre": "EOLICO DE ALUMINIO", "precio": 2405, "img": "../img/eolico.jpg", "stock": 1, "categoria": "EOLICOS"}
+    { "id": 8, "nombre": "EOLICO DE ALUMINIO", "precio": 2405, "img": "../img/eolico.jpg", "stock": 1, "categoria": "EOLICOS"},
+    { "id": 9, "nombre": "GRAMPAS", "precio": 355, "img": "../img/grampas.jpg", "stock": 20, "categoria": "ACCESORIOS"},
+    { "id": 10, "nombre": "REDUCCION DE ALUMINIO", "precio": 455, "img": "../img/reduccion-aluminio.jpg", "stock": 10, "categoria": "ACCESORIOS"},
+    { "id": 11, "nombre": "CODO DE FRENTE 45", "precio": 252.67, "img": "../img/codo45-frente.jpg", "stock": 10, "categoria": "ACCESORIOS"},
+    { "id": 12, "nombre": "CODO DE FRENTE 90", "precio": 252.67, "img": "../img/codo90-frente.jpg", "stock": 10, "categoria": "ACCESORIOS"},
+    { "id": 13, "nombre": "CODO DE COSTADO 45", "precio": 327.78, "img": "../img/codo45-costado.jpg", "stock": 10, "categoria": "ACCESORIOS"},
+    { "id": 14, "nombre": "CODO DE COSTADO 90", "precio": 327.78, "img": "../img/codo90-costado.jpg", "stock": 10, "categoria": "ACCESORIOS"},
+    { "id": 15, "nombre": "RAMAL T 45", "precio": 680.56, "img": "../img/ramalt-45.jpg", "stock": 5, "categoria": "ACCESORIOS"},
+    { "id": 16, "nombre": "RAMAL T 90", "precio": 542.67, "img": "../img/ramalt-90.jpg", "stock": 5, "categoria": "ACCESORIOS"},
+    { "id": 17, "nombre": "SOBRETEJA", "precio": 517.67, "img": "../img/sobreteja.jpg", "stock": 10, "categoria": "PARA TECHOS"},
+    { "id": 18, "nombre": "BANDA PEINE", "precio": 737.33, "img": "../img/bandapeine.jpg", "stock": 10, "categoria": "PARA TECHOS"},
+    { "id": 19, "nombre": "CONVERSA", "precio": 1019, "img": "../img/conversa.jpg", "stock": 10, "categoria": "PARA TECHOS"},
+    { "id": 20, "nombre": "CONVERSA C/COSTILLA", "precio": 1019, "img": "../img/conversa-costilla.jpg", "stock": 10, "categoria": "PARA TECHOS"},
+    { "id": 21, "nombre": "CENEFA", "precio": 733, "img": "../img/cenefa.jpg", "stock": 10, "categoria": "PARA TECHOS"},
+    { "id": 22, "nombre": "CUMBRERA", "precio": 948.34, "img": "../img/cumbrera.jpg", "stock": 10, "categoria": "PARA TECHOS"}
 ]

@@ -1,4 +1,10 @@
 import { mostrarProductos } from "./app.js";
+import { carritoDeCompras} from "./carritoindex.js"
+import { login } from "./extras.js"
+
+document.addEventListener("DOMContentLoaded", () => {login(); global()})
+
+// CARGA DE PRODUCTOS DESDE JSON
 
 const productos = []
 
@@ -27,8 +33,38 @@ const global = async () => {
     mostrarProductos(productos);
 }
 
-global();
+// FUNCIÓN PARA LLAMAR A API DE MERCADO PAGO
 
-export {productos};
+const pagar = async () => {
+
+    const productosToMap = carritoDeCompras.map(element => {
+        let nuevoElemento = {
+            title: element.nombre,
+            description: element.categoria,
+            picture_url: element.img,
+            category_id: element.id,
+            quantity: element.cantidad,
+            currency_id: "ARS",
+            unit_price: element.precio 
+        }
+        return nuevoElemento;
+    })
+
+    let response = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer TEST-1454007686165937-080908-700eac44f61b45108a943dc399084269-70485351"
+        },
+        body: JSON.stringify({
+            items: productosToMap
+        })
+    })
+
+    let data = await response.json();
+
+    window.open(data.init_point, "_blank")
+}
+
+export {productos, pagar};
 
 

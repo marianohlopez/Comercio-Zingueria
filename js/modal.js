@@ -1,4 +1,5 @@
 import { formProductos } from "./carritoindex.js";
+import { validarForm } from "./extras.js";
 
 const modalContenedor = document.querySelector(".modal-container");
 const abrirCarrito = document.getElementById("open");
@@ -7,6 +8,7 @@ const modalCarrito = document.querySelector(".modal-carrito");
 const abrirFormCompra = document.getElementById("btnFinalizarCompra");
 const cerrarFormCompra = document.getElementById("btnCerrarForm");
 const formCompra = document.querySelector(".containerForm");
+const formFinalizarCompra = document.getElementById("formFinalizarCompra");
 
 abrirCarrito.addEventListener("click", ()=>{
     modalContenedor.classList.toggle("modal-active")
@@ -33,3 +35,10 @@ abrirFormCompra.addEventListener("click", () =>{
 cerrarFormCompra.addEventListener("click", () => {
     formCompra.classList.remove("containerForm-active")
 })
+
+formFinalizarCompra.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validarForm(e);
+})
+
+export{ cerrarFormCompra };

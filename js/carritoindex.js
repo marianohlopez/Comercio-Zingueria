@@ -4,7 +4,8 @@ import { carritoStorage, eliminarProductos, contador, sumaTotal, vaciarCarrito, 
 let carritoDeCompras
 let validarCarrito = localStorage.getItem("carrito");
 
-//Renderizar los productos seleccionados en el carrito
+// Renderizar los productos seleccionados en el carrito
+
 const hacerCarrito = () =>{
     const contenedorCarrito = document.getElementById("carrito-contenedor");
 
@@ -17,11 +18,11 @@ const hacerCarrito = () =>{
         div.classList.add ("productoEnCarrito");
 
         div.innerHTML = `
-                        <p class= "nombreProdCarrito">${item.nombre}</p>
-                        <p class: "precioProdCarrito">Precio: ${item.precio}</p> 
+                        <p class= "nombreProdCarrito fontsize">${item.nombre}</p>
+                        <p class: "precioProdCarrito fontsize">Precio: $${item.precio}</p> 
                         <div class= "sumarRestarCarrito">
                         <button id="restar${item.id}" class= "restaBoton">-</button>
-                        <p id="cantidad${item.id}">Cantidad: ${item.cantidad}</p>
+                        <p class: "fontsize" id="cantidad${item.id}">Cant.: ${item.cantidad}</p>
                         <button id="sumar${item.id}" class= "sumarBoton">+</button>
                         </div>
                         <button id="eliminar${item.id}" class="boton-eliminar" title="Eliminar producto"><img src="../img/trash.svg" alt="botonEliminar"></button>
@@ -37,14 +38,17 @@ const hacerCarrito = () =>{
         const botonEliminar = document.getElementById(`eliminar${item.id}`)
         botonEliminar.addEventListener("click", () => {eliminarProductos(item)})
     }
-    sumaTotal();
+    let precioFinal = document.getElementById("sumaTotal"); 
+    sumaTotal(precioFinal);
     contador();
 } 
 
 // Botón para vaciar el carrito 
+
 const botonVaciarCarrito = document.getElementById("vaciarCarrito").addEventListener("click", () =>{vaciarCarrito();})
 
 //Ingresar productos en el carrito o aumentar cantidad
+
 const carritoIndex = (productoCarrito)=>{
     let producto = productos.find(item => item.id === productoCarrito.id);
     if((productoCarrito.stock <= 0) || (productoCarrito != undefined && producto.cantidad >= productoCarrito.stock)){
@@ -108,7 +112,7 @@ const carritoIndex = (productoCarrito)=>{
     }
 }
 
-/* MODAL FORMULARIO */
+// MODAL FORMULARIO 
 
 const formProductos = () => {
     let formProductos = document.getElementById("compraProductos");
@@ -117,15 +121,18 @@ const formProductos = () => {
         let div = document.createElement("div");
         div.classList.add ("productoEnForm");
         div.innerHTML = `
-                        <p>${element.nombre}</p>
+                        <p class= "productoForm">${element.nombre}</p>
                         <p> $${element.precio}</p> 
-                        <p>Cantidad: ${element.cantidad}</p>
+                        <p>Cant.: ${element.cantidad}</p>
                         `
         formProductos.appendChild(div);
     });
+    let precioFinalForm = document.getElementById("precioFinalForm");
+    sumaTotal(precioFinalForm);
 }
 
 //Siguen renderizandose los productos del carrito luego de actualizar o reiniciar
+
 validarCarrito ? (carritoDeCompras = JSON.parse(validarCarrito), hacerCarrito()) : carritoDeCompras = [];
 
 export {carritoDeCompras, carritoIndex, hacerCarrito, formProductos};

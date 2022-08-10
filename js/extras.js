@@ -1,11 +1,19 @@
+import { pagar } from "./productos.js";
 import {carritoDeCompras, hacerCarrito} from "./carritoindex.js";
+import { cerrarFormCompra } from "./modal.js";
+
+let usuarioStorage = sessionStorage.getItem("usuario");
+let msjBienvenida = document.getElementById("nombreUsuario");
+const cerrarSesion = document.getElementById("cerrarSesion");
 
 //Guardar en localStorage los productos del carrito
+
 const carritoStorage = () => {
     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
 }
 
 // Botón de suma del carrito 
+
 const sumar = (producto) =>{
   let productoCarrito = carritoDeCompras.find(item => item.id === producto.id)
   if(productoCarrito.cantidad < producto.stock){
@@ -36,7 +44,6 @@ const sumar = (producto) =>{
 const resta = (producto) =>{
   let index = carritoDeCompras.findIndex(item => item.id === producto.id);
   if(carritoDeCompras[index].cantidad == 1){
-      /* carritoDeCompras.splice(index, 1); */
       carritoDeCompras[index].cantidad--
       carritoDeCompras[index].cantidad++
       carritoStorage();
@@ -47,21 +54,9 @@ const resta = (producto) =>{
       hacerCarrito();
   }
 }
-/* const resta = (producto) =>{
-  let index = carritoDeCompras.findIndex(item => item.id === producto.id);
-  if(carritoDeCompras[index].cantidad <= 0){
-      carritoDeCompras.splice(index, 1);
-      carritoStorage();
-      hacerCarrito();
-  }else{
-      carritoDeCompras[index].cantidad--
-      carritoStorage();
-      hacerCarrito();
-  }
-} */
-
 
 //Función del boton eliminar del carrito
+
 const eliminarProductos = (producto) => {
   let index = carritoDeCompras.findIndex(item => item.id === producto.id);
   carritoDeCompras.splice(index, 1);
@@ -84,7 +79,7 @@ const eliminarProductos = (producto) => {
 })
 }
 
-/* VACIAR CARRITO */
+// VACIAR CARRITO
 
 const vaciarCarrito = () =>{
   carritoDeCompras.length = 0;
@@ -92,25 +87,25 @@ const vaciarCarrito = () =>{
   hacerCarrito();
 }
 
-//SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
-const sumaTotal = () => {
-    let total = (carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);    
-    let precioTotal = document.getElementById("sumaTotal");  
-    total >=1 ? precioTotal.innerHTML = `<h5>El precio total es ${total}</h5>` : precioTotal.innerHTML = `<h5>Aún no hay productos en el carrito</h5>`;
+// SUMA DEL PRECIO DE LOS PRODUCTOS SELECCIONADOS
+
+const sumaTotal = (precio) => {
+    let total = (carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0)).toFixed(2);     
+    total >=1 ? precio.innerHTML = `<h5 class= "precioSumaTotal">El precio total es $ ${total}</h5>` : precio.innerHTML = `<h5>Aún no hay productos en el carrito</h5>`;
 }
 
-//Contador del carrito de compras
+// Contador del carrito de compras
+
 const contador = () => {
     let contadorCarrito = document.getElementById("contador-carrito")
     contadorCarrito.textContent = carritoDeCompras.reduce((acumulador, elemento) => acumulador + elemento.cantidad, 0);
 }
 
-//Loguear al usuario
+// Loguear al usuario
 
 const login = () =>{
-  let div = document.getElementById("nombreUsuario")
-  let usuarioStorage = sessionStorage.getItem("usuario");
-  if(usuarioStorage == undefined){
+
+  if(sessionStorage.length == 0 || usuarioStorage == `` || usuarioStorage == undefined){
     Swal.fire({
       title: "Ingrese su nombre",
       input: "text",
@@ -123,35 +118,100 @@ const login = () =>{
       if (result.isConfirmed) {
         sessionStorage.setItem("usuario", result.value);
         usuarioStorage = sessionStorage.getItem("usuario").toUpperCase();
-        div.innerHTML = `<h5>BIENVENID@ ${usuarioStorage}</h5>`;
+        msjBienvenida.innerHTML = `<h5 class= "msjBienvenido">BIENVENID@ ${usuarioStorage}</h5>`;
       }
     });
   }else{
-    div.innerHTML = `<h5>BIENVENID@ ${usuarioStorage.toUpperCase()}</h5>`;
+    msjBienvenida.innerHTML = `<h5 class= "msjBienvenido">BIENVENID@ ${usuarioStorage.toUpperCase()}</h5>`;
   }
 }
-login();
 
-/* Cerrar sesión */
+// Cerrar sesión
 
-const cerrarSesion = document.getElementById("cerrarSesion");
-cerrarSesion.addEventListener("click", () => {
-  Swal.fire({
-  title: '¿Desea cerrar sesión?',
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'OK'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      sessionStorage.clear()
-      div.innerHTML = `<h5>BIENVENID@</h5>`
-    }
-  })
-})
+const cerrarLogin = () => {
+  if(sessionStorage.length == 0 || usuarioStorage == ``){
+    msjBienvenida.innerHTML = `<h5 class= "msjBienvenido">BIENVENID@</h5>`
+    Swal.fire({
+    position: 'top-end',
+    icon: 'info',
+    width: 200,
+    title: `Aún no ha iniciado sesión`,
+    showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+    },
+    className: "letraSweet",
+    showConfirmButton: false,
+    timer: 2000
+    })
+  }else{ 
+    Swal.fire({
+      title: '¿Desea cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          usuarioStorage = sessionStorage.clear();
+          msjBienvenida.innerHTML = `<h5 class= "msjBienvenido">BIENVENID@</h5>`
+        }
+    })
+  }
+}
 
-export {carritoStorage, eliminarProductos, sumaTotal, contador, vaciarCarrito, sumar, resta};
+cerrarSesion.addEventListener("click", () => {cerrarLogin()});
+
+// Validar formulario de compra
+
+const validarForm = (e) => {
+  if((e.target.children[1].elements[0].value === ``) || (e.target.children[1].elements[1].value === ``)
+  || (e.target.children[1].elements[2].value === ``) || (e.target.children[1].elements[3].value === ``)) {
+     Swal.fire({
+         position: 'center',
+         icon: 'info',
+         width: 200,
+         title: `Asegúrese de completar todos los casilleros por favor`,
+         showClass: {
+             popup: 'animate__animated animate__fadeInDown'
+         },
+         hideClass: {
+             popup: 'animate__animated animate__fadeOutUp'
+         },
+         className: "letraSweet",
+         showConfirmButton: false,
+         timer: 1500
+     })
+ }
+ if(!e.target.children[1].elements[2].value.includes("@") || !e.target.children[1].elements[2].value.includes(".")) {
+     let mensaje = document.getElementById("errorCorreo");
+     mensaje.innerHTML = `Asegúrese de incluir una dirección de correo válida`
+ }
+ else{
+    Swal.fire({
+      position: 'center',
+      icon: 'info',
+      width: 200,
+      title: `Redirigiendo`,
+      showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+      },
+      className: "letraSweet",
+      showConfirmButton: false,
+      timer: 2500
+    })
+    pagar();
+    cerrarFormCompra.click();
+ }
+}
+
+export {carritoStorage, eliminarProductos, sumaTotal, contador, login, vaciarCarrito, sumar, resta, validarForm};
 
 
 

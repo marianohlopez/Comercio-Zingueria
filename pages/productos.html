@@ -46,7 +46,7 @@
                         <button id="cerrarSesion" title="Cerrar sesión"><img src="../img/logout.svg" alt="logout"></button>
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle btnFiltrar" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Filtrar por :
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -54,6 +54,8 @@
                             <li id="curvas"><a class="dropdown-item curvas" href="#">Curvas </a></li>
                             <li id="sombreros"><a class="dropdown-item sombreros" href="#">Sombreros</a></li>
                             <li id="eolicos"><a class="dropdown-item eolicos" href="#">Eolicos</a></li>
+                            <li id="accesorios"><a class="dropdown-item eolicos" href="#">Accesorios</a></li>
+                            <li id="paraTechos"><a class="dropdown-item eolicos" href="#">Para techos</a></li>
                             <li id="todos"><a class="dropdown-item todos" href="#">Mostrar todos</a></li>
                         </ul>
                     </div>
@@ -65,24 +67,24 @@
         <div id="productoContenedor"></div>
         <div class="modal-container" id="modal_container">
             <div class="modal-carrito">
-                <h3>Carrito</h3>
-                <button id="cerrar">Cerrar</button>
+                <button class="btn-close" id="cerrar"></button>
+                <h3>CARRITO DE COMPRAS</h3>
                 <div id="carrito-contenedor"></div>
-                <div id="vaciarCarrito"><button>Vaciar carrito</button></div> 
+                <div id="vaciarCarrito"><button class="vaciarCarrito btn btn">Vaciar carrito</button></div> 
                 <div>
                     <div id="sumaTotal"></div>
-                    <button id="btnFinalizarCompra">Comprar</button>
+                    <button class="btn btn" id="btnFinalizarCompra">Comprar</button>
                 </div>
             </div>
         </div>
         <div class="containerForm container-fluid">
             <div class="containerFormDiv">
-                <button id="btnCerrarForm">X</button>
+                <button class="btn-close" id="btnCerrarForm"></button>
                 <h2>FINALIZÁ TU COMPRA</h2>
                 <div class="containerFormCompra">
-                    <form class="datosPersonales">
+                    <form id="formFinalizarCompra" class="datosPersonales">
                         <h3>Datos personales</h3>
-                        <fieldset class="container-fluid datos">
+                        <fieldset class="container-fluid">
                             <div class="column">
                                 <div class="mb-3 col-lg-3 col-md-6 labelForm">
                                     <label for="exampleFormControlTextarea1" class="form-label">Nombre</label>
@@ -97,19 +99,22 @@
                             </div>
                             <div class="mb-3 col-lg-3 col-md-6 labelForm">
                                 <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
                                     placeholder="aaa@gmail.com">
                             </div>
+                            <p id="errorCorreo"></p>
                             <div class="mb-3 col-lg-3 col-md-6 labelForm">
                                 <label for="inputAddress" class="form-label">Dirección</label>
                                 <input type="text" class="form-control" id="inputAddress" placeholder="Av. Siempreviva 742">
                             </div>
-                            <button type="button" class="btn btn-light">Finalizar compra</button>
-                            <!-- <input class="m-2 p-1 botonForm" type="submit"> -->
+                            <input id="btnPagar" class="m-2 p-1 botonForm" value="Finalizar compra" type="submit">
                             <input class="m-2 p-1 botonForm" type="reset">
                         </fieldset>
                     </form>
-                    <div id="compraProductos"></div>
+                    <div class="ContProdForm">
+                        <div id="compraProductos"></div>
+                        <h5 id="precioFinalForm"></h5>
+                    </div>
                 </div>
             </div>
         </div>

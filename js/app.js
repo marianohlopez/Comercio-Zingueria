@@ -8,13 +8,13 @@ const mostrarProductos = (renderProductos) =>{
     contenedorProductos.innerHTML = ``;
     renderProductos.forEach(producto => {
         const div = document.createElement("div")
-        div.classList.add("card")
+        div.classList.add("card", "cardPadre")
         div.innerHTML = `
                         <div class = "card">
                             <img src="${producto.img}" class="card-img" alt="imagenProducto">
                             <div >
                                 <h5 class="card-title">${producto.nombre}</h5>
-                                <p class="card-text">Precio: ${producto.precio}</p>
+                                <p class="card-text">Precio: $${producto.precio}</p>
                                 <button class="botonCompra" id="${producto.id}">Comprar</button>
                             </div>
                         </div>`
@@ -46,6 +46,12 @@ filtroSombreros.addEventListener("click", ()=> {filtrar("SOMBREROS");})
 
 let filtroEolicos = document.getElementById("eolicos")
 filtroEolicos.addEventListener("click", ()=> {filtrar("EOLICOS");})
+
+let filtroAccesorios = document.getElementById("accesorios")
+filtroAccesorios.addEventListener("click", () => {filtrar("ACCESORIOS")})
+
+let filtroParaTechos = document.getElementById("paraTechos")
+filtroParaTechos.addEventListener("click", () => {filtrar("PARA TECHOS")})
 
 let filtroTodos = document.getElementById("todos")
 filtroTodos.addEventListener("click", ()=> {mostrarProductos(productos);})
