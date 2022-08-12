@@ -279,7 +279,10 @@ header {
     width: 15px;
     background-color: #f6a700;
     opacity: 50%;
+}
 
+.sumarBoton:active, .restaBoton:active {
+    opacity: 100%;
 }
 
 #vaciarCarrito {
@@ -307,6 +310,11 @@ header {
     font-size: 20px;
     position: relative;
     margin-bottom: 18px;
+}
+
+#errorCompra {
+    font-style: italic;
+    margin-top: 5px;
 }
 
 /* Formulario de datos personales */

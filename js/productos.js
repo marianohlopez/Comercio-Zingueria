@@ -1,6 +1,6 @@
 import { mostrarProductos } from "./app.js";
-import { carritoDeCompras} from "./carritoindex.js"
-import { login } from "./extras.js"
+import { carritoDeCompras} from "./carritoindex.js";
+import { login } from "./extras.js";
 
 document.addEventListener("DOMContentLoaded", () => {login(); global()})
 

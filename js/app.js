@@ -1,6 +1,15 @@
 import { productos } from "./productos.js";
 import { carritoIndex } from "./carritoindex.js";
 
+let filtrarPorNombre = document.getElementById("porNombre");
+let filtroCaños = document.getElementById("caños");
+let filtroCurvas = document.getElementById("curvas");
+let filtroSombreros = document.getElementById("sombreros");
+let filtroEolicos = document.getElementById("eolicos");
+let filtroAccesorios = document.getElementById("accesorios");
+let filtroParaTechos = document.getElementById("paraTechos");
+let filtroTodos = document.getElementById("todos");
+
 /* MOSTRAR PRODUCTOS EN EL LAYOUT */
 
 const mostrarProductos = (renderProductos) =>{
@@ -15,7 +24,7 @@ const mostrarProductos = (renderProductos) =>{
                             <div >
                                 <h5 class="card-title">${producto.nombre}</h5>
                                 <p class="card-text">Precio: $${producto.precio}</p>
-                                <button class="botonCompra" id="${producto.id}">Comprar</button>
+                                <button class="botonCompra" id="${producto.id}">Agregar</button>
                             </div>
                         </div>`
         contenedorProductos.appendChild(div);
@@ -35,25 +44,50 @@ const filtrar = (catg) => {
     mostrarProductos(filtrados);
 }
 
-let filtroCaños = document.getElementById("caños")
+const filtrarNombre = (nombre) => {
+    let filtrados = productos.filter (el => el.nombre === nombre);
+    if(filtrados.length >= 1){
+        mostrarProductos(filtrados);
+    }
+    else{
+        Swal.fire({
+            position: 'center',
+            icon: 'info',
+            width: 300,
+            title: "El producto no se encuentra disponible (RECUERDA INTRODUCIR EL NOMBRE COMPLETO DEL PRODUCTO)",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            className: "letraSweet",
+            showConfirmButton: false,
+            timer: 4500
+        })
+    }
+}
+
+
+filtrarPorNombre = addEventListener("keydown", (e) => {
+    let infoBuscador = (document.getElementById("porNombre").value).toUpperCase();
+    if(e.key === "Enter"){
+        filtrarNombre(infoBuscador)
+    }
+})
+
 filtroCaños.addEventListener("click", ()=> {filtrar("CAÑOS");})
 
-let filtroCurvas = document.getElementById("curvas")
 filtroCurvas.addEventListener("click", ()=> {filtrar("CURVAS");})
 
-let filtroSombreros = document.getElementById("sombreros")
 filtroSombreros.addEventListener("click", ()=> {filtrar("SOMBREROS");})
 
-let filtroEolicos = document.getElementById("eolicos")
 filtroEolicos.addEventListener("click", ()=> {filtrar("EOLICOS");})
 
-let filtroAccesorios = document.getElementById("accesorios")
 filtroAccesorios.addEventListener("click", () => {filtrar("ACCESORIOS")})
 
-let filtroParaTechos = document.getElementById("paraTechos")
 filtroParaTechos.addEventListener("click", () => {filtrar("PARA TECHOS")})
 
-let filtroTodos = document.getElementById("todos")
 filtroTodos.addEventListener("click", ()=> {mostrarProductos(productos);})
 
 export {mostrarProductos}
