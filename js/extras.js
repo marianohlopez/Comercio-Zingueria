@@ -208,6 +208,7 @@ const validarForm = (e) => {
     })
     pagar();
     cerrarFormCompra.click();
+    vaciarCarrito();
  }
 }
 
