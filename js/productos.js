@@ -1,7 +1,6 @@
 import { mostrarProductos } from "./app.js";
 import { carritoDeCompras } from "./carritoindex.js";
 import { login } from "./extras.js";
-import passwordAuthorization from "../config.js";
 
 document.addEventListener("DOMContentLoaded", () => { login(); global() })
 
@@ -54,7 +53,7 @@ const pagar = async () => {
     let response = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: "POST",
         headers: {
-            Authorization: passwordAuthorization
+            Authorization: "Bearer TEST-1454007686165937-080908-700eac44f61b45108a943dc399084269-70485351"
         },
         body: JSON.stringify({
             items: productosToMap
