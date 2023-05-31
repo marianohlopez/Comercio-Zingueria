@@ -24,7 +24,7 @@ const sumar = (producto) => {
     Swal.fire({
       position: 'center',
       icon: 'info',
-      width: 200,
+      width: 400,
       title: `Lo sentimos, por el momento no tenemos stock de ${productoCarrito.nombre}, intente más tarde`,
       showClass: {
         popup: 'animate__animated animate__fadeInDown'

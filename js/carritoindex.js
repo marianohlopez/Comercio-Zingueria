@@ -55,7 +55,7 @@ const carritoIndex = (productoCarrito) => {
         Swal.fire({
             position: 'center',
             icon: 'info',
-            width: 200,
+            width: 400,
             title: `Lo sentimos, por el momento no tenemos stock de ${productoCarrito.nombre}, intente más tarde`,
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
@@ -85,7 +85,7 @@ const carritoIndex = (productoCarrito) => {
             },
             className: "letraSweet",
             showConfirmButton: false,
-            timer: 1222500
+            timer: 1500
         })
 
     } else {
