@@ -1,6 +1,6 @@
 # Comercio-Zingueria
 
-[Untitled.webm](https://user-images.githubusercontent.com/105325211/194091231-5c49b379-6ba1-4ab2-92dc-297a89996882.webm)
+![Recording 2023-01-23 at 14 59 16-min](https://user-images.githubusercontent.com/105325211/214116649-ced5d333-d796-4950-9096-a2f2d4bc63d5.gif)
 
 https://marianohlopez.github.io/Comercio-Zingueria/
 
